@@ -1,19 +1,16 @@
 "use client";
-
-import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
 
 export const InfiniteMovingCards = ({
   items,
-  direction = "left",
-  speed = "fast",
+  direction = "right",
+  speed = "slow",
   pauseOnHover = true,
   className,
 }: {
-  items: {
-    href: string;
-  }[];
+  items: string[];
   direction?: "left" | "right";
   speed?: "fast" | "normal" | "slow";
   pauseOnHover?: boolean;
@@ -25,7 +22,6 @@ export const InfiniteMovingCards = ({
   useEffect(() => {
     addAnimation();
   }, []);
-
   const [start, setStart] = useState(false);
   function addAnimation() {
     if (containerRef.current && scrollerRef.current) {
@@ -69,32 +65,39 @@ export const InfiniteMovingCards = ({
       }
     }
   };
-  console.log(items);
   return (
     <div
       ref={containerRef}
       className={cn(
-        "scroller relative z-20  max-w-7xl overflow-hidden  [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
+        "scroller relative z-20 mx-auto max-w-7xl overflow-hidden  [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
         className,
       )}
     >
       <ul
         ref={scrollerRef}
         className={cn(
-          " flex min-w-full shrink-0 gap-10 py-4 w-max flex-nowrap",
+          "flex min-w-full shrink-0 gap-16 py-4 w-max flex-nowrap",
           start && "animate-scroll ",
           pauseOnHover && "hover:[animation-play-state:paused]",
         )}
       >
         {items.map((item, idx) => (
-          <Image
-            width={170}
-            height={1}
-            src={item.href}
-            alt={item.href}
-            className=" relative rounded-2xl  object-contain opacity-50"
-            key={item.href}
-          />
+          <li
+            className="relative flex items-center justify-center py-6"
+            style={{
+              background:
+                "linear-gradient(180deg, var(--slate-800), var(--slate-900)",
+            }}
+            key={item}
+          >
+            <Image
+              className="opacity-50"
+              src={item}
+              alt="logo images"
+              width={150}
+              height={1}
+            />
+          </li>
         ))}
       </ul>
     </div>

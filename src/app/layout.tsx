@@ -8,6 +8,9 @@ const dmSans = DM_Sans({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Flow",
   description: "Automate your app with Flow",
+  icons: {
+    icon: "/flowLogo.png",
+  },
 };
 
 export default function RootLayout({

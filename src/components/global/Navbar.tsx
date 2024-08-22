@@ -1,15 +1,114 @@
+"use client";
 import React from "react";
-import Image from "next/image";
-import { MenuIcon } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
+import { MenuIcon, XIcon } from "lucide-react";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+import { Button } from "../ui/button";
+import { useRouter, usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
-const NavBar = async () => {
+const routes = [
+  {
+    route: "HOME",
+    href: "/",
+  },
+  {
+    route: "ABOUT",
+    href: "/about",
+  },
+  {
+    route: "LOGIN",
+    href: "/sign-up",
+  },
+];
+const MobileHamburgerMenu = () => {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleNavigation = (path: string) => {
+    router.push(path);
+  };
+
+  return (
+    <div autoFocus={false}>
+      <Drawer>
+        <DrawerTrigger>
+          <MenuIcon className="md:hidden text-white" />
+        </DrawerTrigger>
+        <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle>
+              <div className="flex items-center gap-[2px] text-3xl font-bold justify-center">
+                F
+                <Image
+                  src="/flowLogo.png"
+                  alt="logo"
+                  width={15}
+                  height={15}
+                  className="cursor-pointer"
+                />
+                ow
+              </div>
+            </DrawerTitle>
+            <DrawerDescription className="text-[#E2CBFF]">
+              Automation Magic.
+            </DrawerDescription>
+          </DrawerHeader>
+          <DrawerClose>
+            <div>
+              <ul className="flex flex-col gap-2 items-center justify-center">
+                {routes.map((route) => (
+                  <li key={route.href} className="w-full flex justify-center">
+                    <div
+                      onClick={() => {
+                        handleNavigation(route.href);
+                      }}
+                    >
+                      <h1
+                        className={cn(
+                          "w-full text-center text-3xl font-normal",
+                          pathname.startsWith(route.href) &&
+                            "underline underline-offset-4",
+                        )}
+                      >
+                        {route.route}
+                      </h1>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </DrawerClose>
+          <DrawerFooter>
+            <DrawerClose>
+              <Button variant="outline" className="rounded-[100%] w-fit p-2">
+                <XIcon />
+              </Button>
+            </DrawerClose>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    </div>
+  );
+};
+
+const NavBar = () => {
   return (
     <header className="fixed right-0 left-0 top-0 py-4 px-4 bg-black/40 backdrop-blur-lg z-[100] flex items-center border-b-[1px] border-neutral-900 justify-between">
       <aside className="flex items-center gap-[2px] text-3xl font-bold">
         <p>F</p>
         <Image
-          src="/fuzzieLogo.png"
+          src="/flowLogo.png"
           alt="fuzzie logo"
           width={15}
           height={15}
@@ -20,7 +119,7 @@ const NavBar = async () => {
       <nav className="absolute left-[50%] top-[50%] transform translate-x-[-50%] translate-y-[-50%] hidden md:block">
         <ul className="flex items-center gap-[1rem]">
           <li>
-            <a href="#" className="text-white">
+            <a href="/" className="text-white">
               Home
             </a>
           </li>
@@ -51,7 +150,7 @@ const NavBar = async () => {
             {true ? "Dashboard" : "Get Started"}
           </span>
         </Link>
-        <MenuIcon className="md:hidden text-white" />
+        <MobileHamburgerMenu />
       </aside>
     </header>
   );
