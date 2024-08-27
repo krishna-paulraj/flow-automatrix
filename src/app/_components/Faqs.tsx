@@ -5,18 +5,19 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { SparklesCore } from "@/components/global/sparkles";
 
 const FaqComponent = () => {
   return (
     <div className="mt-20 max-w-[40rem] w-full px-12 flex flex-col gap-5 justify-center items-center mx-auto">
-      <h1 className="text-6xl font-bold">FAQ&apos;s</h1>
+      <h1 className="text-3xl my-3 text-center">
+        Questions? Here are your Answers.
+      </h1>
       <Accordion type="single" collapsible className="w-full">
         <AccordionItem value="item-1">
           <AccordionTrigger className="text-left">
             What is Flow Automation?
           </AccordionTrigger>
-          <AccordionContent>
+          <AccordionContent className="">
             Flow Automation is a powerful tool designed to help businesses
             automate repetitive tasks and workflows, enabling users to focus on
             more strategic work.

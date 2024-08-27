@@ -1,3 +1,64 @@
+// HomePage routes
+import { BookOpenText, ScanFaceIcon, HomeIcon } from "lucide-react";
+
+export const homepageRoutes = [
+  {
+    route: "HOME",
+    href: "/",
+    icon: HomeIcon,
+  },
+  {
+    route: "ABOUT",
+    href: "/about",
+    icon: BookOpenText,
+  },
+  {
+    route: "LOGIN",
+    href: "/sign-up",
+    icon: ScanFaceIcon,
+  },
+];
+
+// Dashboard routes
+import {
+  IconAffiliate,
+  IconArrowLeft,
+  IconBolt,
+  IconBrandTabler,
+  IconLogout,
+  IconReceipt2,
+  IconSettings,
+  IconUserBolt,
+} from "@tabler/icons-react";
+
+export const dashboardRoutes = [
+  {
+    label: "Dashboard",
+    href: "/dashboard",
+    icon: IconBrandTabler,
+  },
+  {
+    label: "Workflows",
+    href: "/workflows",
+    icon: IconBolt,
+  },
+  {
+    label: "Settings",
+    href: "/settings",
+    icon: IconSettings,
+  },
+  {
+    label: "Connections",
+    href: "/connections",
+    icon: IconAffiliate,
+  },
+  {
+    label: "Billing",
+    href: "/billing",
+    icon: IconReceipt2,
+  },
+];
+
 export const clients = [...new Array(10)].map((client, index) => ({
   href: `/${index + 1}.png`,
 }));

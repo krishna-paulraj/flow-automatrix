@@ -1,10 +1,13 @@
+"use client";
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ContainerScroll } from "@/components/global/container-scroll-animation";
+import { useRouter } from "next/navigation";
 
 const HeroComponent = () => {
+  const router = useRouter();
+
   return (
     <div className="">
       <div className="flex flex-col overflow-hidden">
@@ -12,6 +15,7 @@ const HeroComponent = () => {
           titleComponent={
             <div className="flex flex-col justify-center items-center">
               <Button
+                onClick={() => router.push("/sign-up")}
                 size={"lg"}
                 className="p-8 mb-8 md:mb-0 text-2xl w-full sm:w-fit border-t-2 rounded-full border-[#4D4D4D] bg-[#1F1F1F] hover:bg-white group transition-all flex items-center justify-center gap-4 hover:shadow-xl hover:shadow-neutral-500 duration-500"
               >
